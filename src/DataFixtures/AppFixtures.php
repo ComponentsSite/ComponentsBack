@@ -95,19 +95,22 @@ class AppFixtures extends Fixture
             $component = new Component();
             $created = $this->faker->dateTimeBetween("-1 week","now");
             $updated = $this->faker->dateTimeBetween($created,"now");
- 
             //Asign properties to Entity
             $component
-                ->setName($this->faker->name())->setType("card")
+                ->setName($this->faker->name())
+                ->setType($this->faker->randomElement(['card', 'button', 'form', 'ul', 'li']))
                 ->setPrix($this->faker->randomNumber(2))
                 ->setCreatAt($created)
                 ->setUpdateAt($updated)
-                ->setStatus("Pas commencé");
+                ->setStatus("Pas commencé")
+                ->setCode("
+                background-color: #2ea44f;
+                border: 1px solid rgba(27, 31, 35, .15);
+              }");
             $componentEntries[] = $component;
             $manager->persist($component);
         }
         $variablesEntries = [];
-
         //boucle qui itere 
         for( $i = 0; $i < 100; $i++) {
             $variable = new Variables();
@@ -115,8 +118,8 @@ class AppFixtures extends Fixture
             $updatedVar = $this->faker->dateTimeBetween($createdVar,"now");
 
             $variable 
-                ->setName($this->faker->name())->setType("card")
-                ->setType($this->faker->randomNumber(2))
+                ->setName($this->faker->name())
+                ->setType($this->faker->randomElement(['card', 'button', 'form', 'ul', 'li']))
                 ->setCreatedAt($createdVar)
                 ->setUpdatedAt($updatedVar)
                 ->setContent($this->faker->text(10))
