@@ -25,6 +25,15 @@ class PictureController extends AbstractController
     }
 
     #[Route('/api/picture/{idPicture}', name:'picture.get', methods:['GET'])]
+    /**
+     * Récupération d'une image à partir de son identifiant
+     *
+     * @param integer $idPicture
+     * @param PicturesRepository $repository
+     * @param SerializerInterface $serialiser
+     * @param UrlGeneratorInterface $urlGenerator
+     * @return JsonResponse
+     */
     public function getPicture(int $idPicture, PicturesRepository $repository, SerializerInterface $serialiser, UrlGeneratorInterface $urlGenerator) : JsonResponse {
 
         $picture = $repository->find($idPicture);
@@ -37,6 +46,15 @@ class PictureController extends AbstractController
     }
 
     #[Route('/api/picture', name:'picture.create', methods:['POST'])]
+    /**
+     * Ajout d'une nouvelle image
+     *
+     * @param Request $request
+     * @param EntityManagerInterface $entityManager
+     * @param SerializerInterface $serialiser
+     * @param UrlGeneratorInterface $urlGenerator
+     * @return JsonResponse
+     */
     public function createPicture(Request $request,EntityManagerInterface $entityManager, SerializerInterface $serialiser, UrlGeneratorInterface $urlGenerator) : JsonResponse {
 
         $picture = new Pictures;

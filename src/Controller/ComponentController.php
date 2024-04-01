@@ -63,7 +63,7 @@ class ComponentController extends AbstractController
     #[Route('/api/component/{idComponent}', name: 'component.get', methods: ['GET'])]
     #[ParamConverter("component", options : ["id" => "idComponent"])]
     /**
-     * Undocumented function
+     * Récupération d'un composant à partir de son identitfiant
      *
      * @param Component $component
      * @param ComponentRepository $repository
@@ -116,7 +116,7 @@ class ComponentController extends AbstractController
 
     #[Route('/api/component/{id}', name: 'component.update', methods: ['PUT','PATCH'])]
    /**
-    * Undocumented function
+    * Modification d'un composant en fonction de son identifiant
     *
     * @param Request $request
     * @param Component $component
@@ -138,7 +138,7 @@ class ComponentController extends AbstractController
 
     #[Route('/api/component/{id}', name: 'component.delete', methods: ['DELETE'])]
     /**
-     * Undocumented function
+     * Suppression d'un composant selectionné
      *
      * @param Request $request
      * @param Component $component
