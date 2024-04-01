@@ -147,16 +147,9 @@ class ComponentController extends AbstractController
      */
     public function deleteComponent(Request $request,Component $component, EntityManagerInterface $entityManager,TagAwareCacheInterface $cache): JsonResponse
     {
-        
-        //request Array exist and Not empty 
         if(isset($request->toArray()["force"]) && true === $request->toArray()["force"]){
-            // la suoppression est forcée
-            $entityManager->remove($component); 
-            // meme cho se que le delete
-            
+            $entityManager->remove($component);   
         } else {
-            // la suppression n'est pas forcée
-            // meme chose que le Update
             $component->setStatus("abandonné");
             $component->setUpdateAt(new DateTime());
             $entityManager->persist($component);
@@ -165,29 +158,6 @@ class ComponentController extends AbstractController
         $entityManager->flush();
 
         $cache->invalidateTags(["componentCache"]);
-
-    //     [
-    //         "toto" // => 0
-    //     ];
-    // $fiche = [
-    //     "prenom" => "Alexandre",
-    //     "nom"=> "Quilan-Delaistre",
-    //     "age"=> "27",
-    //    "styleMusique"=> "Jazz"
-    // ];   
-
-    // $fiche[0] // === "Alexandre"
-    // $fiche["prenom"] // === "Alexandre"
-
-       
         return new JsonResponse(null,JsonResponse::HTTP_NO_CONTENT);
     }
-
-   /*  public function index(): JsonResponse
-    {
-        return $this->json([
-            'message' => 'Welcome to your new controller!',
-            'path' => 'src/Controller/LibrairieController.php',
-        ]);
-    } */
 }

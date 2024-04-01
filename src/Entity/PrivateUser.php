@@ -37,9 +37,6 @@ class PrivateUser
     #[ORM\Column]
     private ?bool $anonymous = null;
 
-    // #[ORM\Column(type: Types::DATE_MUTABLE)]
-    // private ?\DateTimeInterface $birthdate = null;
-
     #[ORM\Column]
     private ?int $gender = null;
 
@@ -142,18 +139,6 @@ class PrivateUser
 
         return $this;
     }
-
-    // public function getBirthdate(): ?\DateTimeInterface
-    // {
-    //     return $this->birthdate;
-    // }
-
-    // public function setBirthdate(\DateTimeInterface $birthdate): static
-    // {
-    //     $this->birthdate = $birthdate;
-
-    //     return $this;
-    // }
 
     public function getGender(): ?int
     {
